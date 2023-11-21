@@ -2,7 +2,11 @@ package main;
 import core.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class MainTest extends BaseTest {
 
@@ -39,7 +43,8 @@ public class MainTest extends BaseTest {
     public void testGoUsersPageMenu() {
         MainPage mainPage = new MainPage();
         mainPage.clickUsersOpener();
-        WebElement table = driver.findElement(By.cssSelector("#dataTable"));
+        WebElement table  = new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dataTable")));
         assert table.getTagName().equals("table");
         assert table.getAttribute("class").equals("uk-table uk-table-striped");
     }
@@ -48,7 +53,8 @@ public class MainTest extends BaseTest {
     public void testGoUsersPageDropdown() {
         MainPage mainPage = new MainPage();
         mainPage.clickUsers();
-        WebElement button = driver.findElement(By.id("addUser"));
+        WebElement button  = new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("addUser")));
         assert button.getTagName().equals("a");
         assert button.getText().equals("ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ");
         assert button.getAttribute("class").equals("uk-button uk-button-primary");
@@ -58,7 +64,8 @@ public class MainTest extends BaseTest {
     public void testGoUserAddPageDropdown() {
         MainPage mainPage = new MainPage();
         mainPage.clickUserAdd();
-        WebElement title = driver.findElement(By.className("uk-legend"));
+        WebElement title  = new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("uk-legend")));
         assert title.getTagName().equals("legend");
         assert title.getText().equals("Добавление пользователя");
     }

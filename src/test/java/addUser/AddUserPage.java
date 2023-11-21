@@ -1,12 +1,12 @@
 package addUser;
 
+import auth.AuthPage;
 import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AddUserPage extends BasePage {
-
     private static final String ADD_USER_URL = "http://149.255.118.78:7080/add_user";
     @FindBy(id = "dataEmail")
     private WebElement email;
@@ -14,6 +14,12 @@ public class AddUserPage extends BasePage {
     private WebElement password;
     @FindBy(id = "dataName")
     private WebElement name;
+    @FindBy(id = "dataGender")
+    private WebElement selectGender;
+    @FindBy(xpath = "//*[@id=\"dataGender\"]/option[1]")
+    private WebElement selectMaleGender;
+    @FindBy(xpath = "//*[@id=\"dataGender\"]/option[2]")
+    private WebElement selectFemaleGender;
     @FindBy(id = "dataSelect11")
     private WebElement radioButton11;
     @FindBy(id = "dataSelect12")
@@ -27,8 +33,60 @@ public class AddUserPage extends BasePage {
     @FindBy(id = "dataSend")
     private WebElement addButton;
 
-    public AddUserPage(){
+    public AddUserPage() {
         driver.get(ADD_USER_URL);
         PageFactory.initElements(driver, this);
+    }
+
+    public AddUserPage enterLoginPasswordName(String emailValue, String passwordValue, String nameValue) {
+        setEmail(emailValue);
+        setPassword(passwordValue);
+        setName(nameValue);
+        return this;
+    }
+
+    public void setEmail(String emailValue) {
+        email.sendKeys(emailValue);
+    }
+
+    public void setPassword(String passwordValue) {
+        password.sendKeys(passwordValue);
+    }
+
+    public void setName(String nameValue) {
+        name.sendKeys(nameValue);
+    }
+    public void setGender(String gender){
+        selectGender.click();
+        if(gender.equals("M")){
+            selectMaleGender.click();
+        }else {
+            selectFemaleGender.click();
+        }
+
+    }
+
+    public void setRadioButton(int i) {
+        if (i == 1) {
+            radioButton11.click();
+        } else {
+            radioButton12.click();
+        }
+    }
+
+    public void setSelectButton(boolean one, boolean two, boolean three) {
+        if ((!selectButton21.isSelected() && one)|| (selectButton21.isSelected() && !one)){
+            selectButton21.click();
+        }
+        if ((!selectButton22.isSelected() && two)|| (selectButton22.isSelected() && !two)) {
+            selectButton22.click();
+        }
+        if ((!selectButton23.isSelected() && three) || (selectButton23.isSelected() && !three)) {
+            selectButton23.click();
+        }
+    }
+
+    public void clickOnAdduserButton(){
+        addButton.click();
     }
 }

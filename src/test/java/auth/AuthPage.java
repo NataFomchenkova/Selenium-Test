@@ -20,10 +20,18 @@ public class AuthPage extends BasePage {
     }
 
     public AuthPage enterLoginPassword(String loginValue, String passwordValue){
-        login.sendKeys(loginValue);
-        password.sendKeys(passwordValue);
+        setLogin(loginValue);
+        setPassword(passwordValue);
         enter.click();
         return this;
     }
+
+    public void setLogin(String loginValue) {
+        login.sendKeys(loginValue);
+    }
+    public void setPassword(String passwordValue) {
+        password.sendKeys(passwordValue);
+    }
+
 }
 
