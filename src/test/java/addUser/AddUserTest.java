@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -244,180 +245,35 @@ public class AddUserTest extends BaseTest {
     }
 
     //_Pairwise_Tests_
-
-    @Test
-    public void testPairwise_M_1_1() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM1_1@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(true, false, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-
+    @DataProvider(name = "data-pairwise")
+    public Object[][] pairwiseMethod() {
+        return new Object[][]{
+                {"F", 1, false, true, false},
+                {"F", 2, true, false, false},
+                {"F", 1, false, false, false},
+                {"F", 2, true, true, true},
+                {"F", 1, true, false, true},
+                {"F", 2, false, true, true},
+                {"F", 1, true, true, false},
+                {"F", 2, false, false, true},
+                {"M", 2, false, false, false},
+                {"M", 1, true, true, true},
+                {"M", 2, true, false, true},
+                {"M", 1, false, true, true},
+                {"M", 2, true, true, false},
+                {"M", 1, false, false, true},
+                {"M", 2, false, true, false},
+                {"M", 1, true, false, false},
+        };
     }
 
-    @Test
-    public void testPairwise_M_2_2() {
+    @Test(dataProvider = "data-pairwise")
+    public void testPairwise(String gender, int radio, boolean select1, boolean select2, boolean select3) {
         AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM2_2@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(false, true, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_1_3() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM1_3@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(false, false, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_2_12() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM2_12@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(true, true, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_1_23() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("test1_23@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(false, true, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_2_13() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM2_13@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(true, false, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_1_123() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM1_123@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(true, true, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_M_2_() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testM2_@ya.ru", "11", "test");
-        addUserPage.setGender("M");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(false, false, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_2_3() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF2_3@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(false, false, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_1_12() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF1_12@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(true, true, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_2_23() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF2_23@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(false, true, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_1_13() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF1_13@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(true, false, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_2_123() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF2_123@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(true, true, true);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_1_() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF1_@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(false, false, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_2_1() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF2_1@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(2);
-        addUserPage.setSelectButton(true, false, false);
-        addUserPage.clickOnAddUserButton();
-        checkingSuccessfulUserAdd();
-    }
-
-    @Test
-    public void testPairwise_F_1_2() {
-        AddUserPage addUserPage = new AddUserPage();
-        addUserPage.enterLoginPasswordName("testF1_2@ya.ru", "11", "test");
-        addUserPage.setGender("F");
-        addUserPage.setRadioButton(1);
-        addUserPage.setSelectButton(false, true, false);
+        addUserPage.enterLoginPasswordName("test@ya.ru", "11", "test");
+        addUserPage.setGender(gender);
+        addUserPage.setRadioButton(radio);
+        addUserPage.setSelectButton(select1, select2, select3);
         addUserPage.clickOnAddUserButton();
         checkingSuccessfulUserAdd();
     }

@@ -4,6 +4,7 @@ import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddUserPage extends BasePage {
     private static final String ADD_USER_URL = "http://149.255.118.78:7080/add_user";
@@ -15,10 +16,6 @@ public class AddUserPage extends BasePage {
     private WebElement name;
     @FindBy(id = "dataGender")
     private WebElement selectGender;
-    @FindBy(xpath = "//*[@id=\"dataGender\"]/option[1]")
-    private WebElement selectMaleGender;
-    @FindBy(xpath = "//*[@id=\"dataGender\"]/option[2]")
-    private WebElement selectFemaleGender;
     @FindBy(id = "dataSelect11")
     private WebElement radioButton11;
     @FindBy(id = "dataSelect12")
@@ -57,11 +54,12 @@ public class AddUserPage extends BasePage {
     }
 
     public void setGender(String gender) {
+        Select dropdown = new Select(selectGender);
         selectGender.click();
         if (gender.equals("M")) {
-            selectMaleGender.click();
+            dropdown.getOptions().get(0).click();
         } else {
-            selectFemaleGender.click();
+            dropdown.getOptions().get(1).click();
         }
     }
 
