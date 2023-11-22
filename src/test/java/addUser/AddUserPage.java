@@ -1,6 +1,5 @@
 package addUser;
 
-import auth.AuthPage;
 import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -56,14 +55,14 @@ public class AddUserPage extends BasePage {
     public void setName(String nameValue) {
         name.sendKeys(nameValue);
     }
-    public void setGender(String gender){
+
+    public void setGender(String gender) {
         selectGender.click();
-        if(gender.equals("M")){
+        if (gender.equals("M")) {
             selectMaleGender.click();
-        }else {
+        } else {
             selectFemaleGender.click();
         }
-
     }
 
     public void setRadioButton(int i) {
@@ -75,10 +74,10 @@ public class AddUserPage extends BasePage {
     }
 
     public void setSelectButton(boolean one, boolean two, boolean three) {
-        if ((!selectButton21.isSelected() && one)|| (selectButton21.isSelected() && !one)){
+        if ((!selectButton21.isSelected() && one) || (selectButton21.isSelected() && !one)) {
             selectButton21.click();
         }
-        if ((!selectButton22.isSelected() && two)|| (selectButton22.isSelected() && !two)) {
+        if ((!selectButton22.isSelected() && two) || (selectButton22.isSelected() && !two)) {
             selectButton22.click();
         }
         if ((!selectButton23.isSelected() && three) || (selectButton23.isSelected() && !three)) {
@@ -86,7 +85,7 @@ public class AddUserPage extends BasePage {
         }
     }
 
-    public void clickOnAdduserButton(){
+    public void clickOnAddUserButton() {
         addButton.click();
     }
 }

@@ -1,4 +1,5 @@
 package main;
+
 import core.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,6 @@ public class MainTest extends BaseTest {
         assert title.getText().equals("Привет с демо-сайта для автотестов!");
     }
 
-    //возможно стоит вынести путь в константу
     @Test
     public void testGoMorePageMenu() {
         MainPage mainPage = new MainPage();
@@ -43,7 +43,7 @@ public class MainTest extends BaseTest {
     public void testGoUsersPageMenu() {
         MainPage mainPage = new MainPage();
         mainPage.clickUsersOpener();
-        WebElement table  = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement table = new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dataTable")));
         assert table.getTagName().equals("table");
         assert table.getAttribute("class").equals("uk-table uk-table-striped");
@@ -53,7 +53,7 @@ public class MainTest extends BaseTest {
     public void testGoUsersPageDropdown() {
         MainPage mainPage = new MainPage();
         mainPage.clickUsers();
-        WebElement button  = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement button = new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("addUser")));
         assert button.getTagName().equals("a");
         assert button.getText().equals("ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ");
@@ -64,7 +64,7 @@ public class MainTest extends BaseTest {
     public void testGoUserAddPageDropdown() {
         MainPage mainPage = new MainPage();
         mainPage.clickUserAdd();
-        WebElement title  = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement title = new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("uk-legend")));
         assert title.getTagName().equals("legend");
         assert title.getText().equals("Добавление пользователя");

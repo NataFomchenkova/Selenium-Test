@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class UsersTest extends BaseTest {
 
     @Test
-    public void testClickOnAddUserButton(){
+    public void testClickOnAddUserButton() {
         UsersPage usersPage = new UsersPage();
         usersPage.clickAddUserButton();
         WebElement title = driver.findElement(By.className("uk-legend"));

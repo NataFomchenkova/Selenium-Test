@@ -19,7 +19,7 @@ public class AuthPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public AuthPage enterLoginPassword(String loginValue, String passwordValue){
+    public AuthPage enterLoginPassword(String loginValue, String passwordValue) {
         setLogin(loginValue);
         setPassword(passwordValue);
         enter.click();
@@ -29,9 +29,9 @@ public class AuthPage extends BasePage {
     public void setLogin(String loginValue) {
         login.sendKeys(loginValue);
     }
+
     public void setPassword(String passwordValue) {
         password.sendKeys(passwordValue);
     }
-
 }
 
